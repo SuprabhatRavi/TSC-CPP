@@ -30,6 +30,7 @@ class polynomial
     void operator+(polynomial obj);
     void operator*(polynomial obj);
     void operator=(polynomial obj);
+    void operator-(polynomial obj);
     void print()
     {
         for(int i=0;i<n;i++)
@@ -71,6 +72,16 @@ void polynomial::operator=(polynomial obj)
             this->A[i]=obj.A[i];
         }
         this->n=obj.n;
+}
+void polynomial::operator-(polynomial obj)
+{
+    for(int i=0;i<obj.n;i++)
+    {
+        this->A[i]-=obj.A[i];
+    }
+    if(this->n<obj.n)
+        this->n=obj.n;
+    return;
 }
 
 
