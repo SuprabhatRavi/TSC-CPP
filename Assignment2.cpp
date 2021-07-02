@@ -3,13 +3,20 @@ using namespace std;
 
 class polynomial
 {
-    int A[10]={0};
+    int A[100]={0};
     int n;
     public:
     polynomial()
     {
-        A[10]={0};
-        n=10;
+        
+    }
+    polynomial(int* arr,int n)
+    {
+         for(int i=0;i<n;i++)
+         {
+             this->A[i]=arr[i];
+         }
+         this->n=n;
     }
     polynomial(const polynomial &obj)
     {
@@ -23,12 +30,15 @@ class polynomial
     {
         for(int i=0;i<n;i++)
         {
-            A[digree[i]]=cofficient[i];
+            this->A[digree[i]]=cofficient[i];
+            //cout<<this->A[digree[i]]<<" "<<digree[i]<<endl;
         }
+        this->n=digree[n-1];
+        
     }
     
     void operator+(polynomial obj);
-    void operator*(polynomial obj);
+    polynomial operator*(polynomial &obj);
     void operator=(polynomial obj);
     void operator-(polynomial obj);
     void print()
@@ -55,15 +65,26 @@ void polynomial::operator+(polynomial obj)
         this->n=obj.n;
     return;
 }
-void polynomial::operator*(polynomial obj)
+polynomial polynomial::operator*(polynomial &obj)
 {
-    for(int i=0;i<obj.n;i++)
-    {
-        this->A[i]*=obj.A[i];
+    int arr[100]={0};
+    int temp;
+    
+    //obj.print();
+    for(int i=0;i<=this->n;i++)
+    {   
+        for(int j=0;j<=obj.n;j++)
+        {
+            temp=this->A[i]*obj.A[j];
+            arr[i+j]+=temp;
+            //cout<<this->A[i]<<" "<<obj.A[j]<<" "<<temp<<endl;
+            //cout<<i<<" "<<j<<" "<<endl;
+        }
+        
+        
     }
-    if(this->n<obj.n)
-        this->n=obj.n;
-    return;
+    this->n=this->n+obj.n+1;
+    return polynomial(arr,this->n);
 }
 void polynomial::operator=(polynomial obj)
 {
@@ -104,6 +125,6 @@ int main()
 	for(int i=0;i<a;i++)
 	    cin>>cofficient[i];
 	d2.SetCofficient(digree,cofficient,a);
-    d1+d2;
-    d1.print();
+    d3=d1*d2;
+    d3.print();
 }
