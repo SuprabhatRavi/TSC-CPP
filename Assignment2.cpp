@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 class polynomial
@@ -12,9 +12,10 @@ class polynomial
     }
     polynomial(int* arr,int n)
     {
-         for(int i=0;i<n;i++)
+         for(int i=0;i<=n;i++)
          {
              this->A[i]=arr[i];
+             cout<<this->A[i]<<endl;
          }
          this->n=n;
     }
@@ -23,6 +24,7 @@ class polynomial
         for(int i=0;i<obj.n;i++)
         {
             this->A[i]=obj.A[i];
+            
         }
         this->n=obj.n;
     }
@@ -43,9 +45,11 @@ class polynomial
     void operator-(polynomial obj);
     void print()
     {
-        for(int i=0;i<n;i++)
-        {
-            if(A[i])
+        cout<<n<<endl;
+        for(int i=0;i<=n;i++)
+        {   
+            //cout<<A[i]<<" ";
+            if(A[i]!=0)
             {
                 cout<<A[i]<<"X"<<i<<" ";
             }
@@ -83,12 +87,12 @@ polynomial polynomial::operator*(polynomial &obj)
         
         
     }
-    this->n=this->n+obj.n+1;
+    this->n=this->n+obj.n;
     return polynomial(arr,this->n);
 }
 void polynomial::operator=(polynomial obj)
 {
-    for(int i=0;i<obj.n;i++)
+    for(int i=0;i<=obj.n;i++)
         {
             this->A[i]=obj.A[i];
         }
