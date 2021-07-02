@@ -45,7 +45,6 @@ class polynomial
     void operator-(polynomial obj);
     void print()
     {
-        cout<<n<<endl;
         for(int i=0;i<=n;i++)
         {   
             //cout<<A[i]<<" ";
@@ -129,6 +128,16 @@ int main()
 	for(int i=0;i<a;i++)
 	    cin>>cofficient[i];
 	d2.SetCofficient(digree,cofficient,a);
-    d3=d1*d2;
-    d3.print();
+    d1+d2;
+    d1.print();
 }
+
+/*
+Input format
+3
+1 3 5
+1 2 -4
+4
+0 1 2 3
+4 2 -3 2
+*/
